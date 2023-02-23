@@ -37,7 +37,7 @@ public class FullMILP {
 
 
 
-	public double [][] config_matrix = new double [10000][8]; // hay que agrandar el valor para que no se caiga
+	public double [][] config_matrix = new double [1000000][8]; // hay que agrandar el valor para que no se caiga
 
 
 

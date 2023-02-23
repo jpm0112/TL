@@ -13,10 +13,10 @@ public class Main {
 		PrintWriter writer = new PrintWriter("FullMILP_OneDimension.txt", "UTF-8");
 		PrintWriter configuration_writer = new PrintWriter("Configuraciones.txt", "UTF-8");
 
-		for(int instance=1;instance<=1;instance++) {
-			for(int configurations=2;configurations<=2;configurations=configurations+2) {
-				for(int replication=1;replication<=3;replication++) {
-					Instance instancia = new Instance(instance);
+		for(int instance=2;instance<=2;instance++) {
+			for(int configurations=50;configurations<=50;configurations=configurations+2) {
+				for(int replication=1;replication<=8;replication++) {
+					Instance instancia = new Instance(instance);//select_instance
 					FullMILP MILP = new FullMILP(instancia, configurations);
 					MILP.solveModel();
 					writer.printf("%d	%d	%d	%d	%d	%d	%d	%.3f	%.3f	%.3f	%d	%.3f	%d	%.3f", instance, configurations, replication, MILP.numSKU, MILP.numRoutes, MILP.numCustomers, MILP.numTrucks, MILP.FSrunTime, MILP.FSobjectiveValue, MILP.FSGAP, MILP.FSnumTrucksUsed, MILP.SSrunTime, MILP.SSobjectiveValue, MILP.SSGAP);
