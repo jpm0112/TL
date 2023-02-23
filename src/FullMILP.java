@@ -37,7 +37,7 @@ public class FullMILP {
 
 
 
-	public double [][] config_matrix = new double [1000000][8]; // hay que agrandar el valor para que no se caiga
+	public double [][] config_matrix = new double [1000000][9]; // hay que agrandar el valor para que no se caiga
 
 
 
@@ -468,6 +468,7 @@ public class FullMILP {
 								config_matrix[counter][5] = cornerY;
 								config_matrix[counter][6] = rectangle.getLengthX();
 								config_matrix[counter][7] = rectangle.getLengthY();
+								config_matrix[counter][8] = maxCapLevels[truck][level];
 								counter = counter +1;
 
 								configuration.add(rectangle);
