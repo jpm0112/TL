@@ -473,7 +473,11 @@ public class FullMILP {
 
 								configuration.add(rectangle);
 								cornerY = cornerY + rectangle.getLengthY();
-								horizontal = rectangle.getLengthX(); 
+								horizontal = rectangle.getLengthX();
+								if((cornerX+horizontal-((level+1)*maxCapLevels[truck][level]))>0){
+									System.out.println("level: "+ level);
+									System.out.println("DIFF: "+ (cornerX+horizontal-((level+1)*maxCapLevels[truck][level])));
+								}
 								vertical = Y - cornerY;
 
 							}
