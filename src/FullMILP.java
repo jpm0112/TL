@@ -37,7 +37,7 @@ public class FullMILP {
 
 
 
-	public double [][] config_matrix = new double [1000000][9]; // hay que agrandar el valor para que no se caiga
+	public double [][] config_matrix = new double [1000000][9]; // ahs to be a big value, enough to save all configurations. If not it crashes
 
 
 
@@ -425,7 +425,7 @@ public class FullMILP {
 		Arrays.fill(numConfigurations, maxConfigurations);
 		int counter = 0;
 
-		System.out.println(config_matrix);
+		//System.out.println(config_matrix);
 		for(int truck=0;truck<numTrucks;truck++) {
 
 			int Y = truckYlength[truck];
@@ -456,7 +456,7 @@ public class FullMILP {
 						// Loading heuristic:
 						boolean complete = false;
 
-						while (!complete) {	
+						while (!complete) {
 							RectangleLoaded rectangle = loadRectangle(false, route, horizontal, vertical, cornerX, cornerY, configuration, level);
 							if (rectangle!=null) {
 								// Load rectangle:
@@ -471,9 +471,12 @@ public class FullMILP {
 								config_matrix[counter][8] = maxCapLevels[truck][level];
 								counter = counter +1;
 
-								configuration.add(rectangle);
-								cornerY = cornerY + rectangle.getLengthY();
-								horizontal = rectangle.getLengthX();
+								if ((cornerX+horizontal-((level+1)*maxCapLevels[truck][level]))<=0){
+									configuration.add(rectangle);
+									cornerY = cornerY + rectangle.getLengthY();
+									horizontal = rectangle.getLengthX();
+								}
+
 								if((cornerX+horizontal-((level+1)*maxCapLevels[truck][level]))>0){
 									System.out.println("level: "+ level);
 									System.out.println("DIFF: "+ (cornerX+horizontal-((level+1)*maxCapLevels[truck][level])));
@@ -483,7 +486,7 @@ public class FullMILP {
 							}
 							else {
 								// Return to the next base rectangle:
-								int number = configuration.getNumberRectanglesLoaded() - 1;
+								int number = configuration.getNumberRectanglesLoaded() - 1; // rectangles loaded
 								boolean identified = false;
 								while(!identified && number > numFirstRectangleOnCurrentLevel) {
 									rectangle = configuration.getRectangleLoaded(number);
@@ -504,7 +507,7 @@ public class FullMILP {
 									else
 										number--;
 								}
-								if (number == numFirstRectangleOnCurrentLevel)	
+								if (number == numFirstRectangleOnCurrentLevel)
 									complete = true;		
 							}
 						}
