@@ -37,7 +37,7 @@ public class FullMILP {
 
 
 
-	public double [][] config_matrix = new double [1000000][9]; // ahs to be a big value, enough to save all configurations. If not it crashes
+	public double [][] config_matrix = new double [10000000][9]; // ahs to be a big value, enough to save all configurations. If not it crashes
 
 
 
@@ -470,12 +470,10 @@ public class FullMILP {
 								config_matrix[counter][7] = rectangle.getLengthY();
 								config_matrix[counter][8] = maxCapLevels[truck][level];
 								counter = counter +1;
+								configuration.add(rectangle);
+								cornerY = cornerY + rectangle.getLengthY();
+								horizontal = rectangle.getLengthX();
 
-								if ((cornerX+horizontal-((level+1)*maxCapLevels[truck][level]))<=0){
-									configuration.add(rectangle);
-									cornerY = cornerY + rectangle.getLengthY();
-									horizontal = rectangle.getLengthX();
-								}
 
 								if((cornerX+horizontal-((level+1)*maxCapLevels[truck][level]))>0){
 									System.out.println("level: "+ level);
